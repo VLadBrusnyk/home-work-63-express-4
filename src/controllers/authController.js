@@ -61,7 +61,11 @@ function me(req, res) {
 }
 
 function logout(req, res) {
-    res.clearCookie(TOKEN_COOKIE, { httpOnly: true, sameSite: 'lax' });
+    res.clearCookie(TOKEN_COOKIE, {
+        httpOnly: authCookieOptions.httpOnly,
+        sameSite: authCookieOptions.sameSite,
+        secure: authCookieOptions.secure,
+    });
     return res.json({ message: 'Logged out' });
 }
 
